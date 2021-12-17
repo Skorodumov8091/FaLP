@@ -1,0 +1,13 @@
+(define (F lst n)
+  (cond ((null? lst) nil)
+        ((and (= n 1) (atom? (first lst))) (first lst))       
+        ((atom? (first lst)) (F (rest lst) (- n 1)))
+        ((F (rest lst) n))
+  )
+) 
+ 
+(F '((2) (3) 4 5 а (e r) g) 3)
+(F '() 3)
+(F '((2) (3) (e r)) 3)
+(F '(b) 1)
+(F '((2) (3) 4 (e r) g) 1)
