@@ -1,0 +1,11 @@
+(define (merger-list list1 list2)
+  (cond ((null? list1) list2)
+        ((null? list2) list1)
+        ((< (first list1) (first list2)) (cons (first list1) (merger-list (rest list1) list2)))
+        ((cons (first list2) (merger-list list1 (rest list2))))
+  )
+)
+
+(merger-list '(-3 -4 0 2 4 5 7) '(-14 -9 -2 0 2 4 6 10))
+(merger-list '() '(-14 -9 -2 0 2 4 6 10))
+(merger-list '(-3 -4 0 2 4 5 7) '())

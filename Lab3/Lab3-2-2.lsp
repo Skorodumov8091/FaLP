@@ -1,0 +1,31 @@
+(define (qsort lst)
+  (cond
+    ((null? lst) '())
+    ((append
+        (qsort (list< (first lst) (rest lst)))
+        (cons (first lst) '()) 
+        (qsort (list>= (first lst) (rest lst)))
+       )
+    )
+   )
+)
+
+(define (list< lst1 lst2)
+  (cond ((or (null? lst1) (null? lst2)) '())
+    ((< lst1 (first lst2)) (list< lst1 (rest lst2)))
+    ((cons (first lst2) (list< lst1 (rest lst2))))
+  )
+)
+
+(define (list>= lst1 lst2)
+  (cond ((or (null? lst1) (null? lst2)) '())
+    ((>= lst1 (first lst2)) (list>= lst1 (rest lst2)))
+    ((cons (first lst2) (list>= lst1 (rest lst2))))
+  )
+)
+
+(qsort '())
+(qsort '(1))
+(qsort '(2 1))
+(qsort '(2 1 3))
+(qsort '(1 2 6 23 -1 1 3 1 3 4 5 6 8 9 12 3 5 6 89 1 2 4 5 7 2 3 0 1))
